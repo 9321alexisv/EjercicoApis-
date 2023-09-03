@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="estilos.css">
-	<title>Sitio de peliculas</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Sitio de peliculas</title>
 </head>
+
+<header>
+    <nav>
+
+        <h1 id="txtTitulo">Películas Populares</h1>
+        <ul>
+            <div class="idiomas">
+                <button id="btnEspanol">Español</button>
+                <button id="btnIngles">Inglés</button>
+            </div>
+            <select name="gen" id="generos"></select>
+        </ul>
+    </nav>
+</header>
+
 <body>
-	<center> 
-        <h1 id ="txtTitulo">Películas Populares</h1>
-    </center>
-	<div class = "idiomas"> 
-		<button id="btnEspanol">Español</button>
-		<button id="btnIngles">Inglés</button>
-	</div>
 
-	<div class="contenedor" id="contenedor"></div>
 
-	<div class="paginacion">
-		
-		<button id="btnAnterior">Anterior</button>
-		<button id="btnSiguiente">Siguiente</button>
-	</div>
+    <div class="contenedor" id="contenedor"></div>
 
-	<script src="test.js"></script>
+    <div class="paginacion">
+
+        <button id="btnAnterior">Anterior</button>
+        <button id="btnSiguiente">Siguiente</button>
+    </div>
+
+    <script src="test.js"></script>
 </body>
+
 </html>
