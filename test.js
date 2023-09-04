@@ -106,8 +106,11 @@ const cargarPeliculas = async () => {
                 peliculas += `
                             <div class="pelicula">
                                 <img class="poster" src="https://image.tmdb.org/t/p/w500/${pelicula.poster_path}">
-                                <h3 class="titulo">${pelicula.title}</h3>
-                                <div class = "descripcion">${pelicula.overview}</div>
+                                <div class = "info">
+                                    <h3 class="titulo">${pelicula.title}</h3>
+                                    <div class = "descripcion">${pelicula.overview}</div>
+                                    <h5 class = "fecha">${pelicula.release_date}</h5>
+                                </div>  
                             </div>
                         `;
             }); // Pintar imagen, titulo, descripcion
