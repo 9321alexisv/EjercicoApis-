@@ -1,12 +1,16 @@
+//-------------------------------DECLARACION DE VARIABLES-----------------------------------------------
+
 let pagina = 1;
 let idiomaSeleccionado = 'es-MX'; // Idioma predeterminado
-
 const btnAnterior = document.getElementById('btnAnterior');
 const btnSiguiente = document.getElementById('btnSiguiente');
 const btnEspanol = document.getElementById('btnEspanol'); // Botón para español
 const btnIngles = document.getElementById('btnIngles'); // Botón para inglés
 const txtTitulo = document.getElementById('txtTitulo');
 
+//-------------------------------DECLARACION DE VARIABLES-----------------------------------------------
+
+//-------------------------------BOTONES PAGINACION E IDIOMA--------------------------------------------
 btnSiguiente.addEventListener('click', () => {
     if (pagina < 1000) {
         pagina += 1;
@@ -24,6 +28,7 @@ btnAnterior.addEventListener('click', () => {
 btnEspanol.addEventListener('click', () => {
     idiomaSeleccionado = 'es-MX';
     cargarPeliculas();
+    mostrarGeneros();
     txtTitulo.textContent = "Peliculas Populares"
     btnAnterior.textContent = "Anterior"
     btnSiguiente.textContent = "Siguiente"
@@ -32,16 +37,65 @@ btnEspanol.addEventListener('click', () => {
 btnIngles.addEventListener('click', () => {
     idiomaSeleccionado = 'en-US'; // Cambiar a 'en-US' para inglés
     cargarPeliculas();
+    mostrarGeneros();
     txtTitulo.textContent = "Most Popular Movies"
     btnAnterior.textContent = "Previous"
     btnSiguiente.textContent = "Next"
 });
 
+//-------------------------------BOTONES PAGINACION E IDIOMA--------------------------------------------
+
+//-------------------------------FUNCION OBTENER GENEROS------------------------------------------------
+
+async function obtenerGeneros() {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=192e0b9821564f26f52949758ea3c473&language=${idiomaSeleccionado}&page=${pagina}`);
+        const data = await response.json();
+        return data.genres;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+//-------------------------------FUNCION OBTENER GENEROS------------------------------------------------
+
+//-------------------------------FUNCION MOSTRAR GENEROS------------------------------------------------
+var contenedorGeneros = document.getElementById("generos");
+
+let idSeleccionado = '';
+
+async function mostrarGeneros() {
+    generos = await obtenerGeneros();
+    console.log(generos);
+    contenedorGeneros.innerHTML = '';
+    generos.forEach(genero => {
+        const option = document.createElement('option');
+        option.value = genero.id;
+        option.textContent = genero.name || "Error";
+        contenedorGeneros.appendChild(option);
+    });
+
+    // Agregar un evento de cambio al elemento <select>
+    contenedorGeneros.addEventListener('change', function () {
+        // Obtener el valor seleccionado y actualizar idSeleccionado
+        idSeleccionado = this.value;
+        // Cargar las películas con el nuevo filtro
+        cargarPeliculas();
+    });
+
+    // Cargar las películas inicialmente
+    cargarPeliculas();
+}
+
+mostrarGeneros();
+
+//-------------------------------FUNCION CARGAR PELICULAS-----------------------------------------------
+
 const cargarPeliculas = async () => {
     try {
-        const respuesta = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=192e0b9821564f26f52949758ea3c473&language=${idiomaSeleccionado}&page=${pagina}`);
-
-        console.log(respuesta);
+        const respuesta = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=192e0b9821564f26f52949758ea3c473&language=${idiomaSeleccionado}&page=${pagina}&with_genres=${idSeleccionado}`);
+        // Obtener URl y enviar idioma y numero de pagina
 
         // Si la respuesta es correcta
         if (respuesta.status === 200) {
@@ -56,7 +110,7 @@ const cargarPeliculas = async () => {
                                 <div class = "descripcion">${pelicula.overview}</div>
                             </div>
                         `;
-            });
+            }); // Pintar imagen, titulo, descripcion
 
             document.getElementById('contenedor').innerHTML = peliculas;
 
@@ -75,30 +129,7 @@ const cargarPeliculas = async () => {
 
 cargarPeliculas();
 
-async function obtenerGeneros() {
-    try {
-        const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=192e0b9821564f26f52949758ea3c473&language=${idiomaSeleccionado}&page=${pagina}`);
-        const data = await response.json();
-        return data.genres;
-    } catch (error) {
-        console.error(error);
-        return [];
-    }
-}
+//-------------------------------FUNCION CARGAR PELICULAS-----------------------------------------------
 
-contenedorGeneros = document.getElementById("generos");
-
-async function mostrarGeneros() {
-    generos = await obtenerGeneros();
-    console.log(generos);
-    generos.forEach(genero => {
-        const option = document.createElement('option');
-        option.value = genero.id;
-        option.textContent = genero.name || "Error";
-        contenedorGeneros.appendChild(option);
-    })
-}
-
-mostrarGeneros();
 
 
