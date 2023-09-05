@@ -13,8 +13,8 @@ body {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: #241744;
-    color: #96daf7;
+    background: #1b1b29;
+    color: #fefefe;
     margin: 0;
 }
 
@@ -48,7 +48,7 @@ body {
 .paginacion {
     position: fixed;
     bottom: 0;
-    background: #100a1f;
+    background: #1b1b29;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -64,8 +64,8 @@ body {
     justify-content: center;
     text-align: center;
     height: 50px;
-    width: 200px;
-    background: #241744;
+    width: 100px;
+    background: #1b1b29;
     color: #fff;
     border-radius: 100px;
     font-family: 'Montserrat', sans-serif;
@@ -74,7 +74,7 @@ body {
 }
 
 .paginacion button:hover {
-    background: #cc64f1;
+    background: #5cd2c6;
 }
 
 .idiomas button {
@@ -86,8 +86,8 @@ body {
     text-align: center;
     height: 50px;
     width: 200px;
-    background: #241744;
-    color: #fff;
+    background: #1b1b29;
+    color: #fefefe;
     border-radius: 200px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
@@ -95,7 +95,7 @@ body {
 }
 
 button:hover {
-    background: #cc64f1;
+    background: #5cd2c6;
 }
 
 .idiomas {
@@ -115,7 +115,7 @@ header {
     justify-content: space-around;
     transition: 0.7s;
     padding: 5px 20px;
-    background-color: #241744;
+    background-color: #1b1b29;
     z-index: 999;
 }
 
@@ -136,6 +136,12 @@ header ul {
     position: absolute;
     top: 33%;
     left: 7%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
+    font-weight: lighter;
+}
+
+#txtTitulo:hover {
+    color: #5cd2c6;
 }
 
 #generos {
@@ -163,13 +169,33 @@ header ul {
     align-items: center;
     justify-content: center;
     text-align: center;
+    text-align: justify;
     padding: 5px;
-    font-size: xx-small;
     transform: translateY(100%);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
-    /* No captura eventos del mouse cuando está oculto */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+}
+
+.info .titulo {
+    color: #5cd2c6;
+    font: bolder;
+    font-size: 175% !important;
+}
+
+.info .descripcion {
+    font-family: 'Montserrat', sans-serif;
+    font-size: xx-small;
+}
+
+.info .fecha {
+    color: #5cd2c6;
+    font: bolder;
+    font-size: 100%;
+    text-align: right;
+    align-items: right;
+
 }
 
 .pelicula:hover .info {
@@ -177,5 +203,24 @@ header ul {
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
-    /* Captura eventos del mouse cuando está visible */
+}
+
+select {
+    background-color: #52d8cb;
+    color: #fefefe;
+    border: #1b1b29;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 750;
+}
+
+select option {
+    background-color: #1b1b29;
+    color: #fefefe;
+    font-weight: normal;
+    outline: none;
+}
+
+select option:focus {
+    background-color: #5cd2c6;
 }

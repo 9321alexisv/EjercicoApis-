@@ -11,6 +11,11 @@ const txtTitulo = document.getElementById('txtTitulo');
 //-------------------------------DECLARACION DE VARIABLES-----------------------------------------------
 
 //-------------------------------BOTONES PAGINACION E IDIOMA--------------------------------------------
+txtTitulo.addEventListener("click", function () {
+    location.reload();
+});
+
+
 btnSiguiente.addEventListener('click', () => {
     if (pagina < 1000) {
         pagina += 1;
@@ -107,8 +112,10 @@ const cargarPeliculas = async () => {
                             <div class="pelicula">
                                 <img class="poster" src="https://image.tmdb.org/t/p/w500/${pelicula.poster_path}">
                                 <div class = "info">
-                                    <h3 class="titulo">${pelicula.title}</h3>
+                                    <h1 class="titulo">${pelicula.title}</h1>
+                                    <br>
                                     <div class = "descripcion">${pelicula.overview}</div>
+                                    <br>
                                     <h5 class = "fecha">${pelicula.release_date}</h5>
                                 </div>  
                             </div>
